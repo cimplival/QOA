@@ -22,7 +22,7 @@ class CreateBaptismTable extends Migration
             $table->date('date_of_birth');
             $table->string('place_of_birth');
             $table->string('parents_or_guardian_name');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

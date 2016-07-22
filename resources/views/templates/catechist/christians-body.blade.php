@@ -1,15 +1,16 @@
-@if(count($baptisms)===0)
-<h5>Sorry, there are no registered sacraments of Baptism.</h5>
-<button class="btn btn-sm btn-default pull-left" data-toggle="modal" data-target=".add-baptism"><i class="fa fa-fw fa-pencil"></i> Register New Baptism</button>
+@if(count($christians)===0)
+<h5>Sorry, there are no Registered Christians.</h5>
+<button class="btn btn-sm btn-default pull-left" data-toggle="modal" data-target=".add-christian"><i class="fa fa-fw fa-pencil"></i> Register a New Christian</button>
 @else
-@if (Session::has('info-patient'))
+@if (Session::has('info-christian'))
 <div class="alert alert-info text-center btn-close" role="alert">
-  {{ Session::get('info-patient') }}
+  {{ Session::get('info-christian') }}
 </div>
 @endif
 <div class="panel panel-default">
     <div class="panel-heading">
-        {!! Form::open(array('route' => 'search-baptism', 'class'=>'form-inline text-right')) !!}
+        <button class="btn btn-sm btn-default pull-left" data-toggle="modal" data-target=".add-christian"><i class="fa fa-fw fa-plus"></i>Register a Christian</button>
+        {!! Form::open(array('route' => 'search-christian', 'class'=>'form-inline text-right')) !!}
             <div class="form-group">
                 <div class="input-group">
                     <input placeholder="Search Appointments" name="search" class="form-control" type="text" required>
@@ -32,41 +33,42 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($baptisms->reverse() as $baptism)
+
+                @foreach($christians->reverse() as $christian)
                 <tr>
                     <td>
-                        {{ $baptism->christian_name }}
+                        {{ $christian->christian_name }}
                     </td>
                     <td>
-                        {{ $baptism->family_name }}
+                        {{ $christian->family_name }}
                     </td>
                     <td>
-                        {{ Carbon\Carbon::parse($baptism->date_of_baptism)->diffForHumans() }}
+                        {{ Carbon\Carbon::parse($christian->date_of_baptism)->diffForHumans() }}
                     </td>
                     <td>
-                        {{ $baptism->minister }}
+                        {{ $christian->minister }}
                     </td>
                     <td class="center">
                         <button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i> Edit</button>
-                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".baptism-{{$baptism->id}}">
+                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".christian-{{$christian->id}}">
                             Cancel <i class="fa fa-times"></i>
                         </button>
                     </td>
                 </tr>
-                <div class="modal fade baptism-{{$baptism->id}}" tabindex="-1">
+                <div class="modal fade christian-{{$christian->id}}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header bg-info dk">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h5 class="blue bigger">
                                                     <i class="fa fa-times"></i>
-                                                Cancel baptism</h5>
+                                                Cancel christian</h5>
                                             </div>
 
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12">
-                                                        <p>Are you sure you want to <b>Permanently</b> delete this baptism?</p>
+                                                        <p>Are you sure you want to <b>Permanently</b> delete this christian?</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +78,7 @@
                                                         {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!} 
                                                     {!!Form::close()!!}
 
-                                                    {!!Form::open(['method'=>'DELETE','action'=>['Catechist\CatechistController@deleteBaptism',$baptism->id]])!!}
+                                                    {!!Form::open(['method'=>'DELETE','action'=>['Catechist\ChristiansController@deleteChristian',$christian->id]])!!}
                                                         {!! Form::submit('Yes, Cancel', ['class' => 'btn btn-danger btn-sm pull-right']) !!} 
                                                     {!!Form::close()!!}
                                             </div>
@@ -89,17 +91,18 @@
         </div>
         <div class="text-center">
             <ul class="pagination"> 
-                    {{ $baptisms->links() }}
+                    {{ $christians->links() }}
             </ul>
         </div>
     </div>
     @endif
-<!--  Add baptism -->
-    <div class="modal fade add-baptism" tabindex="-1">
+
+    <!--  Add christian -->
+    <div class="modal fade add-christian" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info dk">
-                    <h4 class="font-thin text-center"> Register New Baptism <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                    <h4 class="font-thin text-center"> Register a New Christian <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -133,4 +136,4 @@
             </div>
             </div><!-- /. modal dialog -->
             </div><!-- /. modal-->
-            <!-- Add baptism -->
+            <!-- Add christian -->

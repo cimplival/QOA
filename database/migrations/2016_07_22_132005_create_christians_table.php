@@ -12,7 +12,14 @@ class CreateChristiansTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('christians', function (Blueprint $table) {
+            $table->string('christian_name');
+            $table->string('family_name');
+            $table->date('date_of_birth');
+            $table->string('place_of_birth');
+            $table->string('parents_or_guardian_name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +29,6 @@ class CreateChristiansTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('christians');
     }
 }
