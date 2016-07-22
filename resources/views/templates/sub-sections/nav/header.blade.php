@@ -3,8 +3,8 @@
       <div class="navbar-header bg-info dker">
         <!-- brand -->
         <a href="" class="navbar-brand text-lt">
-          <i class="fa fa-hospital-o"></i>
-          <span class="hidden-folded m-l-xs">cChurch</span>
+          <i class="fa fa-building"></i>
+          <span class="hidden-folded m-l-xs">Q.O.A</span>
         </a>
         <!-- / brand -->
       </div>

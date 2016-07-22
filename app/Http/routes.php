@@ -26,7 +26,7 @@ Route::post('/search',                    ['uses' => 'Catechist\CatechistControl
 Route::get('/baptism',                    ['uses' => 'Catechist\BaptismController@getBaptism','as' => 'baptism']);
 Route::post('/search-baptism',                    ['uses' => 'Catechist\CatechistController@searchCandidate','as' => 'search-baptism']);
 
-Route::get('/catechumens',                ['uses' => 'Catechist\CatechumensController@getCatechuments','as' => 'catechumens']);
+Route::get('/christians',                ['uses' => 'Catechist\ChristiansController@getChristians','as' => 'christians']);
 
 /*Route::get('/reception-patients-results', ['uses' => 'Catechist\CatechistController@getPatientsResults','as' => 'reception-patients-results']);
 Route::get('/reception-registration',     ['uses' => 'Catechist\CatechistController@getRegistration','as' => 'reception-registration');
